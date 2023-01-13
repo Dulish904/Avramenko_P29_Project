@@ -17,23 +17,34 @@
 #         print(f'{name} has normal level')
 #     else:
 #         print(f'{name} has poor level')
+#
+# userLogs = ['admin','user123','student4']
+# userBYears = [2000,2010,2005]
+#
+# def listMaker1(myList):
+#     result = []
+#     for item in myList:
+#         result.append(item.title())
+#     return result
+#
+# def listMaker2(myList):
+#     result = []
+#     for item in myList:
+#         result.append(2023-item)
+#     return result
 
-userLogs = ['admin','user123','student4']
-userBYears = [2000,2010,2005]
+class Student:
+    spec = 'Python'
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
 
-def listMaker1(myList):
-    result = []
-    for item in myList:
-        result.append(item.title())
-    return result
+student1=Student("Bob", 21)
+student2=Student("Anya", 22)
+print('Info about 1 studen')
+print(student1.name)
+print(student1.age)
 
-def listMaker2(myList):
-    result = []
-    for item in myList:
-        result.append(2023-item)
-    return result
-
-newList1 = listMaker1(userLogs)
-newList2 = listMaker2(userBYears)
-print(newList1)
-print(newList2)
+print('Info about 2 studen')
+print(student2.name)
+print(student2.age)
