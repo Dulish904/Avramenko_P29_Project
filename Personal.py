@@ -1,8 +1,6 @@
 import json
 print("Вас вітає інформаційна система співробітники")
-sotrudniki = {'Avramenko Bogdan Vitaliyovich': {'Телефон':'0973112810', 'Пошта':'eli@gmail.com', 'Посада':'Operator'},
-              'Calbonar Bogdan Vitaliyovich': {'Телефон':'0973112810', 'Пошта':'eli@gmail.com', 'Посада':'Operator'},
-              'Avramenko Vitaliy Vitaliyovich': {'Телефон':'0973112810', 'Пошта':'eli@gmail.com', 'Посада':'Operator'}}
+sotrudniki = {}
 
 def add_sotrudnik():
   "Функція додавання співробітника"
@@ -28,7 +26,7 @@ def add_sotrudnik():
   keys = dict(zip(add_keys,add_value))#Формування ще одного словаря
 
   sotrudniki.update({sotr_key: keys})#Додавання ФІО як ключа і його значення словника keys
-  kolo = input("Хочете добавити ще співробітника Y|N")
+  kolo = input("Хочете добавити ще співробітника Y|N\n--> ")
   if kolo.lower() == 'Y':
     add_sotrudnik()
 
@@ -76,7 +74,8 @@ def udalenie_sotrudnik():
   else:
     del sotrudniki[vibor]
 
-def seach_familia():
+def search_familia():
+  "Функція пошуку по фамілії"
   print("Для виходу введіть Y")
   search = str(input("Введіть фамілію для пошуку - "))
   if search.lower() == "y":
@@ -95,5 +94,59 @@ def seach_familia():
       with open('result_poisk.json', 'w', encoding='utf-8') as file:
         json.dump(result, file)
 
-seach_familia()
-print(sotrudniki)
+def search_bukva():
+  "Функція пошуку по букві"
+  print("Для виходу введіть Y")
+  result = {}
+  search = str(input("Введіть букву для пошуку - ")).title()
+  if search.lower() == "y":
+    return
+  for i in sotrudniki.keys():
+    rozbitie = i.split()
+    if rozbitie[0][0] == search:
+      result.update({i:sotrudniki[i]})
+
+  if result == False:
+    print("Нічого не знайденно")
+  else:
+    print(result)
+    save = input("Бажаєте зберегти результат пошуку в файл Y|N\n- ")
+    if save.lower() == "y":
+      with open('result_poisk.json', 'w', encoding='utf-8') as file:
+        json.dump(result, file, indent=3)
+
+try:
+  with open('result_poisk.json', 'r', encoding='utf-8') as file:
+    sotrudniki = json.load(file)
+except:
+  sotrudniki = {}
+while True:
+
+  print(sotrudniki)
+  print("Для виходу введіть Y")
+  try:
+    kursor = int(input("""Введіть цифру потрібної вам функції
+  1.Додавання до списку
+  2.Видалення з списку
+  3.Редагування співробітника
+  4.Пошук по фамілії
+  5.Пошук по букві
+  6.Вихід\n---> """))
+  except:
+    continue
+  if kursor > 6 or kursor < 1:
+    print("Не правильно вказаний параметр\n")
+  elif kursor == 1:
+    add_sotrudnik()
+  elif kursor == 2:
+    udalenie_sotrudnik()
+  elif kursor == 3:
+    update_sotrudnik()
+  elif kursor == 4:
+    search_familia()
+  elif kursor == 5:
+    search_bukva()
+  elif kursor == 6:
+    with open('result_poisk.json', 'w', encoding='utf-8') as file:
+      json.dump(sotrudniki, file, indent=3)
+    break

@@ -1,3 +1,3 @@
 
 s = input()
-print(bool(s))
+print(s[0][0])
