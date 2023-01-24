@@ -3,14 +3,14 @@ import random
 
 class Human:
 
-    def __init__(self, name='Human',job=None,home=None,car=None):
-        self.name=name
+    def __init__(self, name='Human', job=None, home=None, car=None):
+        self.name = name
         self.money = 100
         self.gladness = 50
         self.satiety = 50
         self.job = job
         self.car = car
-        self.home =home
+        self.home = home
 
     def get_home(self):
         self.home = House()
@@ -46,7 +46,7 @@ class Human:
         self.gladness -= self.job.gladness_less
         self.satiety -= 4
 
-    def shopping(self,mange):
+    def shopping(self, mange):
         if self.car.drive():
             pass
         else:
@@ -74,12 +74,12 @@ class Human:
         self.home.mess += 5
 
     def clean_home(self):
-        self.gladness -=5
+        self.gladness -= 5
         self.home.mess = 0
 
     def to_repair(self):
         self.car.strength += 100
-        self.money -=50
+        self.money -= 50
 
     def kazino(self):
         stavka = int(input("Введіть суму ставки - "))
@@ -90,20 +90,20 @@ class Human:
             print("You lose! LOL")
             self.money -= stavka
 
-    def days_indexes(self, day):
-        day = f"Today the {day}of {self.name}'s life"
-        print(f"{day:=^50}","\n")
+    def days_indexes(self, days):
+        days = f"Today the {days}of {self.name}'s life"
+        print(f"{days:=^50}", "\n")
         human_indexes = self.name+"'s indexes"
-        print(f'{human_indexes:^50}','\n')
+        print(f'{human_indexes:^50}', '\n')
         print(f"Money - {self.money}")
         print(f"Satiety - {self.satiety}")
         print(f"Gladness - {self.gladness}")
         home_indexes = 'Home indexes'
-        print(f"{home_indexes:=^50}",'\n')
+        print(f"{home_indexes:=^50}", '\n')
         print(f"Food - {self.home.food}")
         print(f"Mess - {self.home.mess}")
         car_indexes = f"{self.car.brand} car indexes"
-        print(f"{car_indexes:=^50}",'\n')
+        print(f"{car_indexes:=^50}", '\n')
         print(f"Fuel - {self.car.fuel}")
         print(f"Strength - {self.car.strength}")
 
@@ -197,16 +197,16 @@ class Kazino:
             return False
 
 
-brands_of_car={'BMW':{'fuel':100,'strength':100,'consumption':6},
-               "Peugeot":{'fuel':50,'strength':40,'consumption':10},
-               "Volvo":{'fuel':70,'strength':150,'consumption':8},
-               "Ferrari":{'fuel': 80,'strength': 120,'consumption': 14}
+brands_of_car = {'BMW': {'fuel': 100, 'strength': 100, 'consumption': 6},
+               "Peugeot": {'fuel': 50, 'strength': 40, 'consumption': 10},
+               "Volvo": {'fuel': 70, 'strength': 150, 'consumption': 8},
+               "Ferrari": {'fuel': 80, 'strength': 120, 'consumption': 14}
                }
 
-job_list = {"Java developer":{'salary':50,'gladness_less':10},
-            "Python developer":{'salary':45,'gladness_less':3},
-            "C++ developer":{'salary':40,'gladness_less':15},
-            "Rust developer":{'salary':44,'gladness_less':5}
+job_list = {"Java developer": {'salary': 50, 'gladness_less': 10},
+            "Python developer": {'salary': 45, 'gladness_less': 3},
+            "C++ developer": {'salary': 40, 'gladness_less': 15},
+            "Rust developer": {'salary': 44, 'gladness_less': 5}
             }
 
 nick = Human(name='Nick')
